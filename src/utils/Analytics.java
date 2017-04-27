@@ -20,11 +20,25 @@ public class Analytics {
         //    return toTwoDecimalPlaces(weight / (height * height));
 	}
 	
+	/**
+     * This method determines the BMI category that the member belongs to.
+     * 
+     * @return The BMI category that the member belongs to.
+     */
 	public static String determineBMICategory(double bmiValue)
 	{
 		return "";//double BMI = calculateBMI(Member, Assessment);
 	}
 	
+	/**
+	 * This method returns a boolean to indicate if the member has an ideal
+	 *
+     * body weight based on the divine formula
+     * 
+     * @return True if the result of the devine formula is within
+     * 2kgs (inclusive) of the starting weight; false if it is outside
+     * this range.
+     * */
 	public static boolean isIdealBodyWeight(Member member, Assessment assessment)
 	{
 		return true;

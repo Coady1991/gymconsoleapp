@@ -1,6 +1,15 @@
 package models;
 
-public class Assessment {
+/**
+ * Represents an Assessment. Stores weight, chest, thigh, upper arm, waist, hips, comment and the trainer
+ * who carried out the Assesment for a Member.
+ * 
+ * @author Niall Coady
+ * 
+ * @version 1.01 27/04/2017
+ */
+public class Assessment 
+{
 	
 	public double weight;
 	public double chest;
@@ -10,6 +19,26 @@ public class Assessment {
     public double hips;
     public String comment;
     private Trainer trainer;
+    
+    /**
+     * Constructor for objects of class Assessment. There is no validation on any fields.
+     * 
+     * @param weight The weight of the Member for an Assessment.
+     * 
+     * @param chest The chest size of a Member for an Assessment.
+     * 
+     * @param thigh The thigh size of a Member for an Assessment.
+     * 
+     * @param upperArm The upper arm size of a Member for an Assessment.
+     * 
+     * @param waist The waist size of a Member for an Assessment.
+     * 
+     * @param hips The hip size of a Member for an Assessment.
+     * 
+     * @param comment The comment associated with the Assessment.
+     * 
+     * @param trainer The Trainer who carried out the Assessment.
+     */
     
     public Assessment (double weight, double chest, double thigh, double upperArm, double waist, double hips,
     		           String comment, Trainer trainer)
@@ -29,58 +58,82 @@ public class Assessment {
     //***************************************************************************************
 	
     /**
-	 * @return the weight
+     * Returns the weight for the Assessment.
+     * 
+	 * @return The weight for the Assessment
 	 */
-	public double getWeight() {
+	public double getWeight() 
+	{
 		return weight;
 	}
     
 	/**
-	 * @return the chest
+	 * Returns the chest size for the Assessment.
+	 * 
+	 * @return The chest size for the Assessment.
 	 */
-	public double getChest() {
+	public double getChest() 
+	{
 		return chest;
 	}
 	
 	/**
-	 * @return the thigh
+	 * Returns the thigh size for the Assessment.
+	 * 
+	 * @return The thigh size for the Assessment.
 	 */
-	public double getThigh() {
+	public double getThigh() 
+	{
 		return thigh;
 	}
     
 	/**
-	 * @return the upperArm
+	 * Returns the upper arm size for the Assessment.
+	 * 
+	 * @return The upper arm size for the Assessment.
 	 */
-	public double getUpperArm() {
+	public double getUpperArm() 
+	{
 		return upperArm;
 	}
 	
 	/**
-	 * @return the waist
+	 * Returns the waist size for the Assessment.
+	 * 
+	 * @return The waist size for the Assessment.
 	 */
-	public double getWaist() {
+	public double getWaist() 
+	{
 		return waist;
 	}
 	
 	/**
-	 * @return the hips
+	 * Returns the hip size for the Assessment.
+	 * 
+	 * @return The hip size for the Assessment.
 	 */
-	public double getHips() {
+	public double getHips() 
+	{
 		return hips;
 	}
 	
 	/**
-	 * @return the comment
+	 * Returns the comment for the Assessment.
+	 * 
+	 * @return The comment for the Assessment.
 	 */
-	public String getComment() {
+	public String getComment() 
+	{
 		return comment;
 	}
     
 	/**
-	 * @return the trainer
+	 * Returns the Trainer who carried out the Assessment.
+	 * 
+	 * @return The Trainer who carried out the Assessment.
 	 */
-	public Trainer getTrainer() {
+	public Trainer getTrainer() 
+	{
 		return trainer;
 	}
 	
@@ -89,66 +142,93 @@ public class Assessment {
     //***************************************************************************************
     
     /**
-	 * @param weight the weight to set
+     * Updates the weight field for the Assessment.
+     * 
+	 * @param weight The Assessment weight.
 	 */
-	public void setWeight(double weight) {
+	public void setWeight(double weight) 
+	{
 		this.weight = weight;
 	}
 
 	/**
-	 * @param chest the chest to set
+	 * Updates the chest size field for the Assessment.
+	 * 
+	 * @param chest The Assessment chest size.
 	 */
-	public void setChest(double chest) {
+	public void setChest(double chest) 
+	{
 		this.chest = chest;
 	}
 
 	/**
-	 * @param thigh the thigh to set
+	 * Updates the thigh size field for the Assessment.
+	 * 
+	 * @param thigh The Assessment thigh size.
 	 */
-	public void setThigh(double thigh) {
+	public void setThigh(double thigh) 
+	{
 		this.thigh = thigh;
 	}
 
 	/**
-	 * @param upperArm the upperArm to set
+	 * Updates the upper arm size field for the Assessment.
+	 * 
+	 * @param upperArm The Assessment upper arm size.
 	 */
-	public void setUpperArm(double upperArm) {
+	public void setUpperArm(double upperArm) 
+	{
 		this.upperArm = upperArm;
 	}
 
 	/**
-	 * @param waist the waist to set
+	 * Updates the waist size field for the Assessment.
+	 * 
+	 * @param waist The Assessment waist size.
 	 */
-	public void setWaist(double waist) {
+	public void setWaist(double waist) 
+	{
 		this.waist = waist;
 	}
 
 	/**
-	 * @param hips the hips to set
+	 * Updates the hip size field for the Assessment.
+	 * 
+	 * @param hips The Assessment hip size.
 	 */
-	public void setHips(double hips) {
+	public void setHips(double hips) 
+	{
 		this.hips = hips;
 	}
 
 	/**
-	 * @param comment the comment to set
+	 * Updates the comment field for the Assessment.
+	 * 
+	 * @param comment The Assessment comment.
 	 */
-	public void setComment(String comment) {
+	public void setComment(String comment) 
+	{
 		this.comment = comment;
 	}
 
 	/**
-	 * @param trainer the trainer to set
+	 * Updates the Trainer field for the Assessment.
+	 * 
+	 * @param trainer The Assessment Trainer.
 	 */
-	public void setTrainer(Trainer trainer) {
+	public void setTrainer(Trainer trainer) 
+	{
 		this.trainer = trainer;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * Returns a human-readable String representation of the object state.
+	 *
+	 * @return A string version of the Assessment object.
 	 */
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		return "Assessment [weight=" + weight + ", chest=" + chest + ", thigh=" + thigh + ", upperArm=" + upperArm
 				+ ", waist=" + waist + ", hips=" + hips + ", comment=" + comment + ", trainer=" + trainer + "]";
 	}
