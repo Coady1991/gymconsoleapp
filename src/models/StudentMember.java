@@ -5,12 +5,13 @@ import java.util.HashMap;
 
 /**
  * Represents a student member. Stores student ID and college name.
- * Extends class Member.
+ * This is a concrete class which extends class Member.
  * 
  * @author Niall Coady
  *
  * @version 1.01 27/04/2017
  */
+
 public class StudentMember extends Member 
 {
 
@@ -23,23 +24,23 @@ public class StudentMember extends Member
 	 * @param email The Students email. Unique use for Member login.
 	 * 
 	 * @param name The Students name should be no more than 30 characters. If the entered name exceed 30
-     * characters, the extra characters will be truncated and only the first 30 characters will be retained.
+	 * characters, the extra characters will be truncated and only the first 30 characters will be retained.
 	 * 
 	 * @param address The Students address, there is no validation on the Members address.
 	 * 
 	 * @param gender The Students gender i.e can be either "M" or "F". If not specified, default
-     * to "Unspecified".
+	 * to "Unspecified".
 	 * 
 	 * @param height The Students height is measured in Metres. A minimum height of one metre (inclusive)
-     * is allowed and a maximum height of three metres (inclusive).
+	 * is allowed and a maximum height of three metres (inclusive).
 	 * 
 	 * @param startingWeight The Students weight upon joining the gym (in kgs). A minimum weight of
-     * 35kg (inclusive) and a max of 250kg (inclusive) is permitted in the gym.
+	 * 35kg (inclusive) and a max of 250kg (inclusive) is permitted in the gym.
 	 * 
 	 * @param chosenPackage The Students chosen package.
 	 * 
 	 * @param studentId The Students ID is 6 digits long i.e between 100000(exclusive) and 999999 (inclusive).
-     * If an invalid Student ID is entered, set the Student ID to default value of 100000.
+	 * If an invalid Student ID is entered, set the Student ID to default value of 100000.
 	 * 
 	 * @param collegeName The Students college name.
 	 */
@@ -59,8 +60,8 @@ public class StudentMember extends Member
 	}
 
 	//***************************************************************************************
-    // Getters for StudentMember
-    //***************************************************************************************
+	// Getters for StudentMember
+	//***************************************************************************************
 	
 	/**
 	 * Returns the Students student ID.
@@ -83,8 +84,8 @@ public class StudentMember extends Member
 	}
 
 	//***************************************************************************************
-    // Setters for StudentMember
-    //***************************************************************************************
+	// Setters for StudentMember
+	//***************************************************************************************
 	
 	/**
 	 * Updates the Students student ID field.
@@ -111,7 +112,7 @@ public class StudentMember extends Member
 	}
 	
 	/**
-     * Returns a human-readable String representation of the object state.
+	 * Returns a human-readable String representation of the object state.
 	 * 
 	 * @return A string version of the Student object extending Member and Person toString.
 	 */

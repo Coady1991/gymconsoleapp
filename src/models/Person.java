@@ -7,6 +7,7 @@ package models;
  * 
  * @version 1.01 27/04/2017
  */
+
 public class Person 
 {
 
@@ -16,17 +17,17 @@ public class Person
 	private String gender;
 	
 	/**
-	 * Constructor for objects of class Person.
+	 * Constructor for objects of class Person. This is an abstract class.
 	 * 
 	 * @param email The Persons email. Unique use for member login.
 	 * 
 	 * @param name The Persons name should be no more than 30 characters. If the entered name exceed 30
-     * characters, the extra characters will be truncated and only the first 30 characters will be retained.
+	 * characters, the extra characters will be truncated and only the first 30 characters will be retained.
      * 
 	 * @param address The Persons address, there is no validation on the Persons address.
 	 * 
 	 * @param gender The Persons gender i.e can be either "M" or "F". If not specified, default
-     * to "Unspecified".
+	 * to "Unspecified".
      * 
 	 */
 	
@@ -54,8 +55,8 @@ public class Person
 	}
 	
 	//***************************************************************************************
-    // Getters for Person
-    //***************************************************************************************
+	// Getters for Person
+	//***************************************************************************************
 
 	/**
 	 * Returns the email for the Person.
@@ -105,8 +106,8 @@ public class Person
 	}
 
 	//***************************************************************************************
-    // Setters for Person
-    //***************************************************************************************
+	// Setters for Person
+	//***************************************************************************************
 	
 	/**
 	 * Updates the Person email field.
@@ -122,8 +123,7 @@ public class Person
 	 * Updates the Person name field.
 	 * 
 	 * @param name The member's name should be no more than 30 characters. If the entered name exceed 30
-     * characters, the extra characters will be truncated and only the first 30 characters will be retained.
-     * 
+	 * characters, the extra characters will be truncated and only the first 30 characters will be retained.
 	 */
 	public void setName(String name) 
 	{
@@ -165,7 +165,7 @@ public class Person
 	}
 
 	/**
-     * Returns a human-readable String representation of the object state.
+	 * Returns a human-readable String representation of the object state.
 	 * 
 	 * @return A string version of the Person object.
 	 */

@@ -2,15 +2,15 @@ package models;
 
 /**
  * Represents an Assessment. Stores weight, chest, thigh, upper arm, waist, hips, comment and the trainer
- * who carried out the Assesment for a Member.
+ * who carried out the Assessment for a Member.
  * 
  * @author Niall Coady
  * 
  * @version 1.01 27/04/2017
  */
+
 public class Assessment 
 {
-	
 	public double weight;
 	public double chest;
 	public double thigh;
@@ -60,12 +60,12 @@ public class Assessment
     /**
      * Returns the weight for the Assessment.
      * 
-	 * @return The weight for the Assessment
-	 */
-	public double getWeight() 
-	{
-		return weight;
-	}
+     * @return The weight for the Assessment
+     */
+    public double getWeight() 
+    {
+    	return weight;
+    }
     
 	/**
 	 * Returns the chest size for the Assessment.

@@ -2,7 +2,7 @@ package models;
 
 /**
  * Represents a Trainer. Stores Trainer Speciality.
- * Extends class Person.
+ * This is a concrete class which extends class Person.
  * 
  * @author Niall Coady
  * 
@@ -15,19 +15,19 @@ public class Trainer extends Person
 	private String speciality;
 	
 	/**
-	 * Constructor for objects of class Trainer..
+	 * Constructor for objects of class Trainer.
 	 * 
 	 * @param email The Persons email. Unique use for member login.
 	 * 
 	 * @param name The Persons name should be no more than 30 characters. If the entered name exceed 30
-     * characters, the extra characters will be truncated and only the first 30 characters will be retained.
-     * 
+	 * characters, the extra characters will be truncated and only the first 30 characters will be retained.
+	 * 
 	 * @param address The Persons address, there is no validation on the Persons address.
 	 * 
 	 * @param gender The Persons gender i.e can be either "M" or "F". If not specified, default
-     * to "Unspecified".
-     * 
-     * @param speciality The Trainers speciality.
+	 * to "Unspecified".
+	 * 
+	 * @param speciality The Trainers speciality.
 	 */
 	
 	private Trainer(String email, String name, String address, String gender, String speciality)
@@ -37,8 +37,8 @@ public class Trainer extends Person
 	}
 
 	//***************************************************************************************
-    // Getters for Trainer
-    //***************************************************************************************
+	// Getters for Trainer
+	//***************************************************************************************
 	
 	/**
 	 * Returns the Trainers speciality.
@@ -51,8 +51,8 @@ public class Trainer extends Person
 	}
 
 	//***************************************************************************************
-    // Setters for Trainer
-    //***************************************************************************************
+	// Setters for Trainer
+	//***************************************************************************************
 	
 	/**
 	 * Updates the Trainers speciality field.
@@ -65,7 +65,7 @@ public class Trainer extends Person
 	}
 	
 	/**
-     * Returns a human-readable String representation of the object state.
+	 * Returns a human-readable String representation of the object state.
 	 * 
 	 * @return A string version of the Trainer object extending Person toString.
 	 */
