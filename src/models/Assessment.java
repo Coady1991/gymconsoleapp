@@ -1,7 +1,8 @@
 package models;
 
 /**
- * Represents an Assessment. Stores weight, chest, thigh, upper arm, waist, hips, comment and the trainer
+ * Represents an Assessment. Stores weight, chest, thigh,
+ * upper arm, waist, hips, comment and the trainer
  * who carried out the Assessment for a Member.
  * 
  * @author Niall Coady

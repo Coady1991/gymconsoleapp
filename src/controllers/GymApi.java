@@ -2,6 +2,7 @@ package controllers;
 
 import models.*;
 import java.util.ArrayList;
+import utils.*;
 
 /**
  * This is a concrete class that operates between the inheritance hierarchy 
@@ -14,12 +15,13 @@ import java.util.ArrayList;
 
 public class GymApi 
 {
-	private ArrayList<Member> members = new ArrayList();
-	private ArrayList<Trainer> trainers = new ArrayList();
+	private ArrayList<Member> members;
+	private ArrayList<Trainer> trainers;
 	
 	public GymApi()
 	{
-	
+		members = new ArrayList<>();
+		trainers = new ArrayList<>();
 	}
 	
 	/**
@@ -143,7 +145,7 @@ public class GymApi
 	{
 		for(Member member : members) //goes through list of members and compares email with given email
 		{
-			if(member.getEmail().equals(emailEntered))
+			if(member.getEmail().equals(emailEntered.toLowerCase()))
 			{
 				return member; //returns member when email found
 			}
@@ -188,7 +190,7 @@ public class GymApi
 	{
 		for(Trainer trainer : trainers) //goes through list of trainers and compares email with given email
 		{
-			if(trainer.getEmail().equals(emailEntered))
+			if(trainer.getEmail().equals(emailEntered.toLowerCase()))
 			{
 				return trainer; //returns trainer when email found
 			}
@@ -280,5 +282,40 @@ public class GymApi
 		return "There are no members in the gym";
 	}
 	*/
+	
+	/**
+	 * List, for each member, their latest assessment weight and their height both imperially and metrically.
+	 * 
+	 * @return List, for each member, their latest assessment weight and their height
+	 * both imperially and metrically. If there are no members in the gym, return a message
+	 * to indicate this.
+	 */
+	public String listMemberDetailsImperialAndMetric()
+	{
+		String listOfMembers = "";
+		if(members.size() > 0)
+		{
+			for(Member member : members)
+			{//TODO Change starting weight to latest weight from latest assessment
+				listOfMembers = listOfMembers + member.getName() + ": \t"
+						+ member.getStartingWeight() + " kg (" + Analytics.convertWeightKgToPounds(member.getStartingWeight()) + 
+						" lbs) \t" + member.getHeight() + " metres (" + Analytics.convertHeightMetresToInches(member.getHeight()) + " inches)."
+						+ "\n";
+						
+			}
+			return listOfMembers;
+		}
+		return "There are no members in the gym";
+	}
+	
+	public void load() throws Exception
+	{
+		
+	}
+	
+	public void store() throws Exception
+	{
+		
+	}
 	
 }

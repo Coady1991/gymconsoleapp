@@ -2,9 +2,11 @@ package models;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.SortedSet;
 
 /**
- * Represents a Member. Stores height, starting weight, chosen package and a HashMap of dates and assessments for the member. This is an abstract
+ * Represents a Member. Stores height, starting weight, chosen package and 
+ * a HashMap of dates and assessments for the member. This is an abstract
  * class which extends class Person.
  * 
  * @author Niall Coady
@@ -189,9 +191,16 @@ public class Member extends Person
 		
 	}
 	
+	/**
+	 * Returns the assessments date sorted in date order.
+	 * 
+	 * @return The assessments dates sorted in date order.
+	 */
 	//public SortedSet<Date> sortedAssessmentDates()
 	{
+		//SortedSet set = new TreeSet();
 		
+		//set.add(new );
 	}
 	
 	//public abstract void chosenPackage(String chosenPackage)
