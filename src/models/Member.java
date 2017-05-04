@@ -1,8 +1,10 @@
 package models;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * Represents a Member. Stores height, starting weight, chosen package and 
@@ -14,7 +16,7 @@ import java.util.SortedSet;
  * @version 1.01 27/04/2017
  */
 
-public class Member extends Person 
+public abstract class Member extends Person 
 {
 	
 	private double height;
@@ -165,9 +167,9 @@ public class Member extends Person
 	 * @param member The Members Assessments and Dates.
 	 */
 	
-	public void setMember(HashMap<Date, Assessment> member) 
+	public void setMember(Date date, Assessment assessment) 
 	{
-		this.member = member;
+		member.put(date, assessment);
 	}
 	
 	/**
@@ -186,9 +188,9 @@ public class Member extends Person
 	 * 
 	 * @return The latest assessment based on the last entry(by calendar date).
 	 */
-	//public Assessment latestAssessment()
+	public Assessment latestAssessment()
 	{
-		
+		return member.get(sortedAssessmentDates().last());
 	}
 	
 	/**
@@ -196,15 +198,14 @@ public class Member extends Person
 	 * 
 	 * @return The assessments dates sorted in date order.
 	 */
-	//public SortedSet<Date> sortedAssessmentDates()
-	{
-		//SortedSet set = new TreeSet();
-		
+	public SortedSet<Date> sortedAssessmentDates()
+	{//TODO research needed here Treeset???
+		SortedSet<Date> sortedAssessmentDates = new TreeSet<>(           );
+		return null;
+		//List<Date> list = new ArrayList<Date>(set);
 		//set.add(new );
 	}
 	
-	//public abstract void chosenPackage(String chosenPackage)
-	{
-		
-	}
+	public abstract void chosenPackage(String chosenPackage);
+	
 }

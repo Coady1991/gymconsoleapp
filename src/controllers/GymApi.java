@@ -10,7 +10,7 @@ import utils.*;
  * 
  * @author Niall Coady
  * 
- * @version 1.01 02/05/2017
+ * @version 1.02 04/05/2017
  */
 
 public class GymApi 
@@ -145,7 +145,7 @@ public class GymApi
 	{
 		for(Member member : members) //goes through list of members and compares email with given email
 		{
-			if(member.getEmail().equals(emailEntered.toLowerCase()))
+			if(member.getEmail().toLowerCase().equals(emailEntered.toLowerCase()))
 			{
 				return member; //returns member when email found
 			}
@@ -160,21 +160,24 @@ public class GymApi
 	 * 
 	 * @return A list of members whose name partially or entirely matches the entered name.
 	 */
-	/*
+	
 	public String searchMembersByName(String nameEntered)
 	{
-		//TODO Fix this
-		//return "1";
 		String nameMembers = "";
 		for(Member member : members)
 		{
 			if(member.getName().toLowerCase().contains(nameEntered.toLowerCase()))
 			{
-				//TODO fix this line
+				return nameMembers + "\n" + member.getName();
+			}
+			else if(nameMembers.equals(""))
+			{
+				return "There was no matches found";
 			}
 		}
+		return "There are no members in the gym";
 	}
-	*/
+	
 	
 	/**
 	 * Returns the trainer object that matches the email entered.
@@ -190,7 +193,7 @@ public class GymApi
 	{
 		for(Trainer trainer : trainers) //goes through list of trainers and compares email with given email
 		{
-			if(trainer.getEmail().equals(emailEntered.toLowerCase()))
+			if(trainer.getEmail().toLowerCase().equals(emailEntered.toLowerCase()))
 			{
 				return trainer; //returns trainer when email found
 			}
@@ -208,9 +211,9 @@ public class GymApi
 	public String listMembers()
 	{
 		String listMembers = "";
-		for (int index = 0; index <members.size(); index++)
+		for (int index = 0; index < members.size(); index++)
 		{
-			listMembers = listMembers + index + ": " + members.get(index).toString() + "\n";
+			listMembers += index + ": " + members.get(index).toString() + "\n";
 		}
 		if (listMembers.equals(""))
 		{
@@ -229,22 +232,31 @@ public class GymApi
 	 * @return Returns a string containing all the members details in the gym
 	 * whose latest assessment weight is an ideal weight
 	 */
-	/*
+	
 	public String listMembersWithIdealWeight()
 	{
 		String listOfMembersIdeal = "";
 		if (members.size() > 0)
 		{
 			for (Member member : members)
-			{//TODO fix to latest Assessment
-				if(member.isIdealBodyWeight())
+			{
+				if(Analytics.isIdealBodyWeight(member, member.latestAssessment()))
 				{
-					listOfMembersIdeal = 
+					listOfMembersIdeal += " " + member.toString() + "\n"; 
+				}
+				else if(listOfMembersIdeal.equals(""))
+				{
+					return "There are no members in the gym with an ideal weight";
+				}
+				else
+				{
+					return listOfMembersIdeal;
 				}
 			}
 		}
+		return "There are no members in the gym";
 	}
-	*/
+	
 	
 	/**
 	 * Returns a string containing all the members details in the gym
@@ -257,17 +269,17 @@ public class GymApi
 	 * whose BMI category(based on their latest assessment weight) partially
 	 * or entirely matches the entered category
 	 */
-	/*
+	
 	public String listmembersByspecificBMICateogry(String category)
 	{
 		String listOfMembers = "";
 		if(members.size() > 0)
 		{
 			for(Member member: members)
-			{//TODO fix next line?
-				if(member)
+			{
+				if(Analytics.determineBMICategory(Analytics.calculateBMI(member, member.latestAssessment())).toUpperCase().contains(category.toUpperCase()))
 				{
-					
+					listOfMembers += member.toString() + "\n";
 				}
 			}
 			if(listOfMembers.equals(""))
@@ -281,7 +293,7 @@ public class GymApi
 		}
 		return "There are no members in the gym";
 	}
-	*/
+	
 	
 	/**
 	 * List, for each member, their latest assessment weight and their height both imperially and metrically.
@@ -296,9 +308,9 @@ public class GymApi
 		if(members.size() > 0)
 		{
 			for(Member member : members)
-			{//TODO Change starting weight to latest weight from latest assessment
-				listOfMembers = listOfMembers + member.getName() + ": \t"
-						+ member.getStartingWeight() + " kg (" + Analytics.convertWeightKgToPounds(member.getStartingWeight()) + 
+			{
+				listOfMembers += member.getName() + ": \t"
+						+ member.latestAssessment().getWeight() + " kg (" + Analytics.convertWeightKgToPounds(member.latestAssessment().getWeight()) + 
 						" lbs) \t" + member.getHeight() + " metres (" + Analytics.convertHeightMetresToInches(member.getHeight()) + " inches)."
 						+ "\n";
 						
@@ -310,12 +322,12 @@ public class GymApi
 	
 	public void load() throws Exception
 	{
-		
+		//TODO add load
 	}
 	
 	public void store() throws Exception
 	{
-		
+		//TODO add save
 	}
 	
 }

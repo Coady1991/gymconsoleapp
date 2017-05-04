@@ -33,7 +33,7 @@ public class Person
 	
 	public Person(String email, String name, String address, String gender)
 	{
-		this.email = email; //TODO put validation here
+		this.email = email.toLowerCase(); //TODO put validation here
 		if (name.length() < 30)
 	    {
 	        this.name = name;
@@ -116,7 +116,7 @@ public class Person
 	 */
 	public void setEmail(String email) 
 	{
-		this.email = email;
+		this.email = email.toLowerCase();
 	}
 
 	/**
@@ -172,7 +172,6 @@ public class Person
 	@Override
 	public String toString() 
 	{
-		//TODO Enter String details
 		return "email: " + email + ", name: " + name + ", address: " + address + ", gender: " + gender;
 	}
 	

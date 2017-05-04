@@ -93,11 +93,11 @@ public class Analytics {
 	 * For females, an ideal body weight is: 45.5kg + 2.3kg for each inch over 5 feet.
 	 * Note: If no gender is specified, return result of the female calculation.
 	 * Note: If the member is 5 feet or less, return 50kg for male and 45.5kg for female.
-     * 
-     * @return True if the result of the devine formula is within
-     * 2kgs (inclusive) of the starting weight; false if it is outside
-     * this range.
-     * */
+	 *  
+	 * @return True if the result of the devine formula is within
+	 * 2kgs (inclusive) of the starting weight; false if it is outside
+	 * this range.
+	 */
 	
 	public static boolean isIdealBodyWeight(Member member, Assessment assessment)
 	{
