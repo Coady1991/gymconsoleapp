@@ -199,11 +199,9 @@ public abstract class Member extends Person
 	 * @return The assessments dates sorted in date order.
 	 */
 	public SortedSet<Date> sortedAssessmentDates()
-	{//TODO research needed here Treeset???
-		SortedSet<Date> sortedAssessmentDates = new TreeSet<>(           );
-		return null;
-		//List<Date> list = new ArrayList<Date>(set);
-		//set.add(new );
+	{
+		SortedSet<Date> assessment = new TreeSet<>(member.keySet());
+		return assessment;
 	}
 	
 	public abstract void chosenPackage(String chosenPackage);
