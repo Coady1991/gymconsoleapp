@@ -22,6 +22,8 @@ public class GymApi
 	{
 		members = new ArrayList<>();
 		trainers = new ArrayList<>();
+		
+		members.add(new StudentMember("test@mail.com", "Niall", "Tramore", "M", 1.75, 66, "Student", 100001, "WIT"));
 	}
 	
 	/**

@@ -12,7 +12,7 @@ import java.util.Scanner;
  * 
  * @author Niall Coady
  * 
- * @version 1.02 05/05/2017
+ * @version 1.03 07/05/2017
  */
 
 public class MenuController {
@@ -122,7 +122,7 @@ public class MenuController {
 		
 		if(personClass.contains("M") && gymapi.searchMembersByEmail(loginEmail) != null)
 		{
-			memberMenu(personClass, gymapi.searchMembersByEmail(loginEmail));
+			runMemberMenu(personClass, gymapi.searchMembersByEmail(loginEmail));			
 		}
 		else if(personClass.contains("T") && gymapi.searchTrainersByEmail(loginEmail) != null)
 		{
@@ -130,7 +130,7 @@ public class MenuController {
 		}
 		else
 		{
-			System.out.println("You entered and invalid email: " + loginEmail +
+			System.out.println("ACCESS DENIED: " + loginEmail +
 					           "\nReturning to login menu!");
 		}
 	}
@@ -264,7 +264,7 @@ public class MenuController {
 				mChosenPackage = validNextString("Is this membership a Premium or Student type membership? (P/S)");
 				mChosenPackage = mChosenPackage.toUpperCase();
 				
-				if(!mChosenPackage.equals("P") && !mChosenPackage.equals("S"))
+				if(!mChosenPackage.toUpperCase().equals("P") && !mChosenPackage.toUpperCase().equals("S"))
 				{
 					System.out.println("Invalid option was entered: " + mChosenPackage);
 					System.out.println("\nPlease enter P or S");
@@ -290,7 +290,7 @@ public class MenuController {
 				
 				while(true)
 				{
-					mStudentId = validNextInt("\nPlease enter your Student Id number(Between 100001 and 999999)");
+					mStudentId = validNextInt("Please enter your Student Id number(Between 100001 and 999999)");
 					
 					if((mStudentId >= 100001) && (mStudentId <= 999999))
 					{
@@ -380,7 +380,6 @@ public class MenuController {
 			
 			tAddress = validNextString("Enter your Address: ");
 			
-			
 			while(true)
 			{
 				tGender = validNextString("Enter your Gender: (M/F)");
@@ -396,19 +395,209 @@ public class MenuController {
 				}
 			}
 			
-			tSpeciality = validNextString("Enter yout training speciality: ");
+			tSpeciality = validNextString("Enter your training speciality: ");
 			
 			gymapi.addTrainer(new Trainer(tEmail, tName, tAddress, tGender, tSpeciality));
-			System.out.println("\nNew Trainer added successfully!");	
+			System.out.println("\nNew Trainer added successfully!");
 		}
 
 	}
 	
 	//TODO #1 Member menu
-	private void memberMenu(String personClass, Member member)
+	private int memberMenu()
 	{
-		System.out.println();
+		System.out.println("+---------------------------+");
+		System.out.println("+        Member Area        +");
+		System.out.println("+---------------------------+");
+		System.out.println("  1) View your proflie");
+		System.out.println("  2) Update your profile");
+		System.out.println("  3) View Progress Sub-Menus");
+		System.out.println("  0) Exit");
+		int option = validNextInt("==>> ");
+		return option;
 	}
+	
+	private void runMemberMenu(String personClass, Member member)
+	{
+		int option = memberMenu();
+		while (option != 0)
+		{
+			switch (option)
+			{
+			case 1: System.out.println(member.toString());
+			break;
+			case 2: runMemberProfile(member);
+			//break;
+			//case 3: memberSubMenu();
+			//break;
+			default: System.out.println("Invalid option entered: " + option);
+			break;
+			}
+			//pause the program so that the user can read what was printed to
+			//the terminal window
+			System.out.println("\nPress any key to continue...");
+			input.nextLine();
+			//display the main menu again
+			option = memberMenu();
+		}
+		//The user chose option 0, so exit the program
+		System.out.println("Exiting to login menu...");
+		runMenu();
+	}
+	
+	private int memberProfile(Member member)
+	{
+		System.out.println("+---------------------------+");
+		System.out.println("+      Update Profile       +");
+		System.out.println("+---------------------------+");
+		System.out.println("  1) Update email");
+		System.out.println("  2) Update name");
+		System.out.println("  3) Update address");
+		System.out.println("  4) Update gender");
+		System.out.println("  5) Update height");
+		System.out.println("  6) Update weight");
+		if(member.getChosenPackage().contains("S"))
+		{
+			System.out.println("  7) Update Student Id");
+			System.out.println("  8) Update College Name");
+		}
+		System.out.println("  9) Update package type");
+		System.out.println("  0) Exit");
+		int option = validNextInt("==>> ");
+		return option;
+	}
+	
+	private void runMemberProfile(Member member)
+	{
+		int option = memberProfile(member);
+		while (option != 0)
+		{
+			switch (option)
+			{
+			case 1:
+				String email = validNextString("\nEnter your E-mail address: ");		
+				if(!email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"))
+				{
+					System.out.println("Error, please make sure email contains an @ and .");
+				}
+				else
+				{
+					member.setEmail(email);
+					System.out.println("E-mail updated.");
+				}
+			break;
+			case 2: 
+				String name = validNextString("Enter your new name: ");
+				if(!name.matches("^[ A-Za-z]+$"))
+				{
+					System.out.println("Error, please make sure name contains only letters and spaces.");
+				}
+				else
+				{
+					member.setName(name);
+					System.out.println("Name updated.");
+				}
+			break;
+			case 3: 
+				String address = validNextString("Enter your Address: ");
+				member.setAddress(address);
+				System.out.println("Address updated.");
+			break;
+			case 4:
+				String gender = validNextString("Enter your Gender: (M/F)");	
+				if(!gender.toUpperCase().equals("M") && !gender.toUpperCase().equals("F"))
+				{
+					System.out.println("Error, please select M or F only.");
+				}
+				else
+				{
+					member.setGender(gender);
+				}
+				break;
+			case 5:
+				double height = validNextDouble("Enter your Height: ");
+				if((height >= 1) && (height <=3))
+				{
+					member.setHeight(height);
+					System.out.println("Height updated.");
+				}
+				else
+				{
+					System.out.println("Error, please enter a height between 1 and 3 metres.");
+				}
+			break;
+			case 6:
+				double weight = validNextDouble("Enter your Weight: ");
+				if((weight >= 35) && (weight <= 250))
+				{
+					member.setHeight(weight);
+					System.out.println("Weight updated");
+				}
+				else
+				{
+					System.out.println("Error, please enter a weight between 35 and 250 kgs.");
+				}
+			break;
+			case 7:
+				int studentId = validNextInt("Enter your Student Id: ");
+				if((studentId >= 100001) && (studentId <= 999999))
+				{
+					//http://stackoverflow.com/questions/10021603/calling-a-subclass-method-from-superclass
+					((StudentMember)member).setStudentId(studentId);
+					System.out.println("Student Id updated.");
+				}
+				else
+				{
+					System.out.println("Error, please enter a number between 100001 and 999999");
+				}
+			break;
+			case 8:
+				String collegeName = validNextString("Please enter the name of your College? ");
+				if(!collegeName.matches("^[ A-Za-z]+$"))
+				{
+					System.out.println("Error, please make sure college name contains only letters and spaces.");
+				}
+				else
+				{
+					//http://stackoverflow.com/questions/10021603/calling-a-subclass-method-from-superclass
+					((StudentMember)member).setCollegeName(collegeName);
+					System.out.println("College name updated");
+				}
+			break;
+			case 9:
+				String chosenPackage = validNextString("Is this membership a Premium or Student type membership? (P/S)");
+				if(!chosenPackage.toUpperCase().equals("P") && !chosenPackage.toUpperCase().equals("S"))
+				{
+					System.out.println("Error, please select P or S only");
+				}
+				else if(chosenPackage.equals("P"))
+				{//TODO fix this so it updates
+					chosenPackage = "Premium Membership";
+					member.setChosenPackage(chosenPackage);
+					System.out.println("Chosen package updated");
+				}
+				else if(chosenPackage.equals("S"))
+				{
+					chosenPackage  = "Student Membership";
+					member.setChosenPackage(chosenPackage);
+					System.out.println("Chosen package updated");
+				}
+			break;
+			}
+				//pause the program so that the user can read what was printed to
+				//the terminal window
+				System.out.println("\nPress any key to continue...");
+				input.nextLine();
+				//display the main menu again
+				option = memberProfile(member);
+		}
+			//The user chose option 0, so exit the program
+			System.out.println("Exiting to Member menu...");
+			runMemberMenu(null, member);
+			
+	}
+	
+	
 	
 	//TODO #2 Trainer Menu
 	private void trainerMenu(String personClass, Person trainer)
