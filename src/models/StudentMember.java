@@ -48,7 +48,7 @@ public class StudentMember extends Member
 			             String chosenPackage, int studentId, String collegeName)
 	{
 		super(email, name, address, gender, height, weight, chosenPackage);
-		if ((studentId >= 100001) && (studentId <= 999999))
+		if((studentId >= 100001) && (studentId <= 999999))
         {
             this.studentId = studentId;
         }

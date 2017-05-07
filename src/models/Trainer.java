@@ -30,7 +30,7 @@ public class Trainer extends Person
 	 * @param speciality The Trainers speciality.
 	 */
 	
-	private Trainer(String email, String name, String address, String gender, String speciality)
+	public Trainer(String email, String name, String address, String gender, String speciality)
 	{
 		super(email, name, address, gender);
 		this.speciality = speciality;
