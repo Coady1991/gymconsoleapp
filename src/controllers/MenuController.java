@@ -12,7 +12,7 @@ import java.util.Scanner;
  * 
  * @author Niall Coady
  * 
- * @version 1.03 07/05/2017
+ * @version 1.04 08/05/2017
  */
 
 public class MenuController {
@@ -71,11 +71,14 @@ public class MenuController {
 		{
 			switch (option)
 			{
-			case 1: login();
+			case 1: 
+				login();
 			break;
-			case 2: register();
+			case 2: 
+				register();
 			break;
-			default: System.out.println("Invalid option entered: " + option);
+			default: 
+				System.out.println("Invalid option entered: " + option);
 			break;
 			}
 			//pause the program so that the user can read what was printed to
@@ -404,6 +407,11 @@ public class MenuController {
 	}
 	
 	//TODO #1 Member menu
+	/**
+	 * memberMenu() - This method displays the member menu after a member
+	 * successfully logins in with a valid email.
+	 * 
+	 */
 	private int memberMenu()
 	{
 		System.out.println("+---------------------------+");
@@ -424,13 +432,16 @@ public class MenuController {
 		{
 			switch (option)
 			{
-			case 1: System.out.println(member.toString());
+			case 1: 
+				System.out.println(member.toString());
 			break;
-			case 2: runMemberProfile(member);
-			//break;
-			//case 3: memberSubMenu();
-			//break;
-			default: System.out.println("Invalid option entered: " + option);
+			case 2: 
+				runMemberProfile(member);
+			break;
+			case 3: runMemberProgressMenu(member);
+			break;
+			default: 
+				System.out.println("Invalid option entered: " + option);
 			break;
 			}
 			//pause the program so that the user can read what was printed to
@@ -475,10 +486,15 @@ public class MenuController {
 			switch (option)
 			{
 			case 1:
-				String email = validNextString("\nEnter your E-mail address: ");		
+				String email = validNextString("\nEnter your new E-mail address: ");		
 				if(!email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"))
 				{
 					System.out.println("Error, please make sure email contains an @ and .");
+				}
+				else if(gymapi.searchMembersByEmail(email) != null || gymapi.searchTrainersByEmail(email) != null)
+				{
+					System.out.println("\nThis E-mail address is already in use: " + email);
+					System.out.println("Please, try again!");
 				}
 				else
 				{
@@ -499,7 +515,7 @@ public class MenuController {
 				}
 			break;
 			case 3: 
-				String address = validNextString("Enter your Address: ");
+				String address = validNextString("Enter your new Address: ");
 				member.setAddress(address);
 				System.out.println("Address updated.");
 			break;
@@ -515,7 +531,7 @@ public class MenuController {
 				}
 				break;
 			case 5:
-				double height = validNextDouble("Enter your Height: ");
+				double height = validNextDouble("Enter your new Height: ");
 				if((height >= 1) && (height <=3))
 				{
 					member.setHeight(height);
@@ -527,7 +543,7 @@ public class MenuController {
 				}
 			break;
 			case 6:
-				double weight = validNextDouble("Enter your Weight: ");
+				double weight = validNextDouble("Enter your new Weight: ");
 				if((weight >= 35) && (weight <= 250))
 				{
 					member.setHeight(weight);
@@ -539,7 +555,7 @@ public class MenuController {
 				}
 			break;
 			case 7:
-				int studentId = validNextInt("Enter your Student Id: ");
+				int studentId = validNextInt("Enter your new Student Id: ");
 				if((studentId >= 100001) && (studentId <= 999999))
 				{
 					//http://stackoverflow.com/questions/10021603/calling-a-subclass-method-from-superclass
@@ -552,7 +568,7 @@ public class MenuController {
 				}
 			break;
 			case 8:
-				String collegeName = validNextString("Please enter the name of your College? ");
+				String collegeName = validNextString("Please enter the new name of your College? ");
 				if(!collegeName.matches("^[ A-Za-z]+$"))
 				{
 					System.out.println("Error, please make sure college name contains only letters and spaces.");
@@ -583,6 +599,9 @@ public class MenuController {
 					System.out.println("Chosen package updated");
 				}
 			break;
+			default: 
+				System.out.println("Invalid option entered: " + option);
+			break;
 			}
 				//pause the program so that the user can read what was printed to
 				//the terminal window
@@ -596,6 +615,71 @@ public class MenuController {
 			runMemberMenu(null, member);
 			
 	}
+	
+	private int memberProgressMenu(Member member)
+	{
+		System.out.println("+---------------------------+");
+		System.out.println("+       Progress Menu       +");
+		System.out.println("+---------------------------+");
+		System.out.println("  View your progress by: ");
+		System.out.println("  1) Weight");
+		System.out.println("  2) Chest Measurement");
+		System.out.println("  3) Thigh Measurement");
+		System.out.println("  4) Upper Arm Measurement");
+		System.out.println("  5) Waist Measurement");
+		System.out.println("  6) Hips Measurement");
+		System.out.println("  0) Exit");
+		int option = validNextInt("==>> ");
+		return option;
+	}
+	
+	private void runMemberProgressMenu(Member member)
+	{
+		int option = memberProgressMenu(member);
+		while (option != 0)
+		{
+			switch (option)
+			{//TODO check to see if works, will have to change some code to deal with no assessments.
+			case 1:
+				System.out.println("Starting weight: " + member.getStartingWeight() + " kgs");
+				System.out.println("Current weight: " + member.latestAssessment().getWeight());
+			break;
+			case 2:
+				System.out.println("Starting Chest Measurement: " + member);
+				System.out.println("Current Chest Measurement: " + member.latestAssessment().getChest());
+			break;
+			case 3:
+				System.out.println("Starting Thigh Measurement: " + member);
+				System.out.println("Current Thigh Measurement: " + member.latestAssessment().getThigh());
+			break;
+			case 4:
+				System.out.println("Starting Upper Arm Measurement: " + member);
+				System.out.println("Current Upper Arm Measurement: " + member.latestAssessment().getUpperArm());
+			break;
+			case 5:
+				System.out.println("Starting Waist Measurement: " + member);
+				System.out.println("Current Waist Measurement: " + member.latestAssessment().getWaist());
+			break;
+			case 6:
+				System.out.println("Staring Hips Measurement: " + member);
+				System.out.println("Current Hips Measurement " + member.latestAssessment().getHips());
+			break;
+			default: 
+				System.out.println("Invalid option entered: " + option);
+			break;
+			}
+			    //pause the program so that the user can read what was printed to
+			    //the terminal window
+			    System.out.println("\nPress any key to continue...");
+			    input.nextLine();
+			    //display the main menu again
+			    option = memberProfile(member);
+		}
+		//The user chose option 0, so exit the program
+		System.out.println("Exiting to Member menu...");
+		runMemberMenu(null, member);
+		}
+	
 	
 	
 	

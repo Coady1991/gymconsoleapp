@@ -23,7 +23,8 @@ public class GymApi
 		members = new ArrayList<>();
 		trainers = new ArrayList<>();
 		
-		members.add(new StudentMember("test@mail.com", "Niall", "Tramore", "M", 1.75, 66, "Student", 100001, "WIT"));
+		members.add(new StudentMember("niall@mail.com", "Niall", "Tramore", "M", 1.80, 86, "Student", 100001, "WIT"));
+		members.add(new PremiumMember("john@mail.com", "John", "Waterford", "M", 1.75, 80, "Premium"));
 	}
 	
 	/**
