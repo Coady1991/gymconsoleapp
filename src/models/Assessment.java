@@ -230,8 +230,8 @@ public class Assessment
 	@Override
 	public String toString() 
 	{
-		return "Assessment [weight=" + weight + ", chest=" + chest + ", thigh=" + thigh + ", upperArm=" + upperArm
-				+ ", waist=" + waist + ", hips=" + hips + ", comment=" + comment + ", trainer=" + trainer + "]";
+		return "Assessment weight: " + weight + ", chest: " + chest + ", thigh: " + thigh + ", upperArm: " + upperArm
+				+ ", waist: " + waist + ", hips: " + hips + ", comment: " + comment + ", trainer: " + trainer;
 	}
 
     

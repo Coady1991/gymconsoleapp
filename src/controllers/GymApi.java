@@ -10,7 +10,7 @@ import utils.*;
  * 
  * @author Niall Coady
  * 
- * @version 1.02 04/05/2017
+ * @version 1.03 12/05/2017
  */
 
 public class GymApi 
@@ -25,6 +25,7 @@ public class GymApi
 		
 		members.add(new StudentMember("niall@mail.com", "Niall", "Tramore", "M", 1.80, 86, "Student", 100001, "WIT"));
 		members.add(new PremiumMember("john@mail.com", "John", "Waterford", "M", 1.75, 80, "Premium"));
+		trainers.add(new Trainer("train@mail.com", "Ben", "Kill", "M", "Conditioning"));
 	}
 	
 	/**
@@ -167,20 +168,24 @@ public class GymApi
 	public String searchMembersByName(String nameEntered)
 	{
 		String nameMembers = "";
-		for(Member member : members)
-		{
-			if(member.getName().toLowerCase().contains(nameEntered.toLowerCase()))
+		if(members.size() > 0)
+			for(int i = 0; i < members.size(); i++)
 			{
-				return nameMembers + "\n" + member.getName();
+				if(members.get(i).getName().toLowerCase().contains(nameEntered.toLowerCase()))
+				{
+					nameMembers += members.get(i).getName() + "\n";
+				}
+				else if(nameMembers.equals(""))
+				{
+					nameMembers = "There was no matches found";
+				}
 			}
-			else if(nameMembers.equals(""))
+			else
 			{
-				return "There was no matches found";
+				nameMembers = "There are no members in the gym";
 			}
-		}
-		return "There are no members in the gym";
+		return nameMembers;
 	}
-	
 	
 	/**
 	 * Returns the trainer object that matches the email entered.
@@ -214,10 +219,11 @@ public class GymApi
 	public String listMembers()
 	{
 		String listMembers = "";
-		for (int index = 0; index < members.size(); index++)
-		{
-			listMembers += index + ": " + members.get(index).toString() + "\n";
-		}
+		if(members.size() > 0)
+			for (Member members : members)
+			{
+				listMembers += members.toString() + "\n";
+			}
 		if (listMembers.equals(""))
 		{
 			return "There are no members in the gym";

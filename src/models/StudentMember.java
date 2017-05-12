@@ -118,7 +118,7 @@ public class StudentMember extends Member
 	 */
 	public String toString() 
 	{
-		return super.toString() + "\nStudent ID: " + studentId + ", collegeName: " + collegeName;
+		return super.toString() + "\nStudent ID: " + studentId + ", collegeName: " + collegeName + "\n";
 	}
 	
 	public void chosenPackage(String packageChoice)

@@ -39,6 +39,11 @@ public class PremiumMember extends Member
 		super(email, name, address, gender, height, weight, chosenPackage);
 	}
 	
+	public String toString() 
+	{
+		return super.toString() + "\n";
+	}
+	
 	public void chosenPackage(String packageChoice)
 	{
 		

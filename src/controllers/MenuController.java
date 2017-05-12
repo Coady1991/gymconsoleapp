@@ -12,10 +12,11 @@ import java.util.Scanner;
  * 
  * @author Niall Coady
  * 
- * @version 1.04 08/05/2017
+ * @version 1.05 12/05/2017
  */
 
-public class MenuController {
+public class MenuController 
+{
 	
 	private Scanner input;
 	private GymApi gymapi;
@@ -129,7 +130,7 @@ public class MenuController {
 		}
 		else if(personClass.contains("T") && gymapi.searchTrainersByEmail(loginEmail) != null)
 		{
-			trainerMenu(personClass, gymapi.searchTrainersByEmail(loginEmail));
+			runTrainerMenu(personClass, gymapi.searchTrainersByEmail(loginEmail));
 		}
 		else
 		{
@@ -406,7 +407,6 @@ public class MenuController {
 
 	}
 	
-	//TODO #1 Member menu
 	/**
 	 * memberMenu() - This method displays the member menu after a member
 	 * successfully logins in with a valid email.
@@ -680,13 +680,168 @@ public class MenuController {
 		runMemberMenu(null, member);
 		}
 	
-	
-	
-	
-	//TODO #2 Trainer Menu
-	private void trainerMenu(String personClass, Person trainer)
+	private int trainerMenu()
 	{
-		
+		System.out.println("+---------------------------+");
+		System.out.println("+       Trainer Area        +");
+		System.out.println("+---------------------------+");
+		System.out.println("  1) Add a new member");
+		System.out.println("  2) List all members");
+		System.out.println("  3) Search for a member by email");
+		System.out.println("  4) Search for a member by name");
+		System.out.println("  5) List members with ideal bodyweight");
+		System.out.println("  6) List members with a specific BMI cateogry");
+		System.out.println("  7) Assessment sub-menu");
+		System.out.println("  8) Reports sub-menu");
+		System.out.println("  0) Exit");
+		int option = validNextInt("==>> ");
+		return option;
 	}
-
+	
+	private void runTrainerMenu(String personClass, Person trainer)
+	{
+		int option = trainerMenu();
+		while (option != 0)
+		{
+			switch (option)
+			{
+			case 1:
+				register();
+			break;
+			case 2:
+				System.out.println(gymapi.listMembers()); 
+			break;
+			case 3:
+				String emailEntered = validNextString("Please enter the email of the member you wish to search for? ");
+				System.out.println(gymapi.searchMembersByEmail(emailEntered));
+			break;
+			case 4:
+				String nameEntered = validNextString("Please enter the name of the member you wish to search for? ");
+				System.out.println(gymapi.searchMembersByName(nameEntered));
+			break;
+			case 5:
+				//gymapi.listMembersWithIdealWeight(); Needs latest assessment to work
+			break;
+			case 6:
+				System.out.println("Trainer these are the BMI cateogories: ");
+				System.out.println(" Very Severely Underweight" + 
+				                   "\n Severely Underweight" + 
+						           "\n Underweight" +
+				                   "\n Normal" +
+						           "\n Overweight" +
+				                   "\n Moderately Obese" +
+						           "\n Severely Obese" +
+				                   "\n Very Sverely Obese");
+				String category = validNextString("Please enter the BMI cateogry you wish to search?");
+				gymapi.listmembersByspecificBMICateogry(category);
+			break;
+			case 7:
+				runAssessmentMenu(trainer);
+			break;
+			case 8:
+				runReportsMenu(trainer);
+			break;
+			default: 
+				System.out.println("Invalid option entered: " + option);
+			break;
+			}
+			//pause the program so that the user can read what was printed to
+			//the terminal window
+			System.out.println("\nPress any key to continue...");
+			input.nextLine();
+			//display the main menu again
+			option = trainerMenu();
+		}
+		//The user chose option 0, so exit the program
+		System.out.println("Exiting to login menu...");
+		runMenu();
+		}
+	
+	private int assessmentMenu(Person trainer)
+	{
+		System.out.println("+---------------------------+");
+		System.out.println("+        Assessments        +");
+		System.out.println("+---------------------------+");
+		System.out.println("  1) Add an assessment for a member");
+		System.out.println("  2) Update comment on an assessment for a member");
+		System.out.println("  0) Exit");
+		int option = validNextInt("==>> ");
+		return option;
+	}
+	
+	private void runAssessmentMenu(Person trainer)
+	{
+		int option = assessmentMenu(trainer);
+		while (option != 0)
+		{
+			switch(option)
+			{
+			case 1:
+				
+			break;
+			case 2:
+				
+			break;
+			default:
+				System.out.println("Invalid option entered: " + option);
+			break;
+			}
+			//pause the program so that the user can read what was printed to
+			//the terminal window
+			System.out.println("\nPress any key to continue...");
+			input.nextLine();
+			//display the main menu again
+			option = assessmentMenu(trainer);
+		}
+		//The user chose option 0, so exit the program
+		System.out.println("Exiting to login menu...");
+		runTrainerMenu(null, trainer);
+	}
+	
+	private int reportsMenu(Person trainer)
+	{
+		System.out.println("+---------------------------+");
+		System.out.println("+      Member Reports       +");
+		System.out.println("+---------------------------+");
+		System.out.println("  1) View member progress via email search");
+		System.out.println("  2) View ember progress via name search");
+		System.out.println("  3) Overall member' report");
+		System.out.println("  0) Exit");
+		int option = validNextInt("==>> ");
+		return option;
+	}
+	
+	private void runReportsMenu(Person trainer)
+	{
+		int option = reportsMenu(trainer);
+		while(option != 0)
+		{
+			switch(option)
+			{
+			case 1:
+				
+			break;
+			case 2:
+				
+			break;
+			case 3:
+				
+			break;
+			default:
+				System.out.println("Invalid option entered: " + option);
+			break;
+			}
+			//pause the program so that the user can read what was printed to
+			//the terminal window
+			System.out.println("\nPress any key to continue...");
+			input.nextLine();
+			//display the main menu again
+			option = reportsMenu(trainer);
+		}
+		//The user chose option 0, so exit the program
+		System.out.println("Exiting to login menu...");
+		runTrainerMenu(null, trainer);	
+	}
 }
+
+
