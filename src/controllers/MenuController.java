@@ -645,30 +645,72 @@ public class MenuController
 		while (option != 0)
 		{
 			switch (option)
-			{//TODO check to see if works, will have to change some code to deal with no assessments.
+			{
 			case 1:
 				System.out.println("Starting weight: " + member.getStartingWeight() + " kgs");
+				if(member.sortedAssessmentDates().size() > 0)
+				{
 				System.out.println("Current weight: " + member.latestAssessment().getWeight());
+				}
+				else
+				{
+					System.out.println("You have not completed an assessment yet!");
+				}
 			break;
 			case 2:
 				System.out.println("Starting Chest Measurement: ");
+				if(member.sortedAssessmentDates().size() > 0)
+				{
 				System.out.println("Current Chest Measurement: " + member.latestAssessment().getChest());
+				}
+				else
+				{
+					System.out.println("You have not completed an assessment yet!");
+				}
 			break;
 			case 3:
 				System.out.println("Starting Thigh Measurement: ");
+				if(member.sortedAssessmentDates().size() > 0)
+				{
 				System.out.println("Current Thigh Measurement: " + member.latestAssessment().getThigh());
+				}
+				else
+				{
+					System.out.println("You have not completed an assessment yet!");
+				}
 			break;
 			case 4:
 				System.out.println("Starting Upper Arm Measurement: ");
+				if(member.sortedAssessmentDates().size() > 0)
+				{
 				System.out.println("Current Upper Arm Measurement: " + member.latestAssessment().getUpperArm());
+				}
+				else
+				{
+					System.out.println("You have not completed an assessment yet!");
+				}
 			break;
 			case 5:
 				System.out.println("Starting Waist Measurement: ");
+				if(member.sortedAssessmentDates().size() > 0)
+				{
 				System.out.println("Current Waist Measurement: " + member.latestAssessment().getWaist());
+				}
+				else
+				{
+					System.out.println("You have not completed an assessment yet!");
+				}
 			break;
 			case 6:
 				System.out.println("Staring Hips Measurement: ");
+				if(member.sortedAssessmentDates().size() > 0)
+				{
 				System.out.println("Current Hips Measurement " + member.latestAssessment().getHips());
+				}
+				else
+				{
+					System.out.println("You have not completed an assessment yet!");
+				}
 			break;
 			default: 
 				System.out.println("Invalid option entered: " + option);
@@ -850,6 +892,7 @@ public class MenuController
 				{
 					
 					//TODO accept a members name string instead of a member class runMemberProgressMenu();
+					//need to match name to email??
 				}
 			break;
 			case 3:
