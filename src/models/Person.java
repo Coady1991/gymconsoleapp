@@ -33,7 +33,7 @@ public class Person
 	
 	public Person(String email, String name, String address, String gender)
 	{
-		this.email = email.toLowerCase(); //TODO put validation here
+		this.email = email.toLowerCase();
 		if (name.length() < 30)
 	    {
 	        this.name = name;

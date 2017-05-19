@@ -204,6 +204,11 @@ public abstract class Member extends Person
 		return assessment;
 	}
 	
+	public void addAssessment(Assessment memberAssessment)
+	{
+		member.put(new Date(), memberAssessment);
+	}
+	
 	public abstract void chosenPackage(String chosenPackage);
 	
 }

@@ -1,7 +1,19 @@
 package controllers;
 
 import models.*;
+
+import static utils.ScannerInput.validNextDouble;
+import static utils.ScannerInput.validNextString;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+
 import utils.*;
 
 /**
@@ -328,15 +340,65 @@ public class GymApi
 		}
 		return "There are no members in the gym";
 	}
+
+	public void addAssessment(Person trainer, Member member)
+	{
+		double weight;
+		
+		while(true)
+		{
+			weight = validNextDouble("Enter you starting weight(Between 35 and 250kgs): ");
+			
+			if((weight >= 35) && (weight <= 250))
+			{
+				break;
+			}
+			else
+			{
+				System.out.println("Invalid weight entered: " + weight);
+				System.out.println("\nPlease enter a starting weight between 35 and 250 kgs");
+			}
+		}
+		
+		double chest = validNextDouble("Enter Chest measurement: ");
+		double thigh = validNextDouble("Enter Thigh measurement: ");;
+		double upperArm = validNextDouble("Enter Upper Arm measurement: ");;
+	    double waist = validNextDouble("Enter Waist measurement: ");;
+	    double hips = validNextDouble("Enter Hips measurement: ");;
+	    String comment = validNextString("Enter assessment comment: ");
+	    
+	    member.addAssessment(new Assessment(weight, chest, thigh, upperArm, waist, hips, comment, trainer));
+	}
+	/**
+	 * Loads Member and Trainer data.
+	 * 
+	 * @throws Exception
+	 */
 	
+	 @SuppressWarnings("unchecked")
 	public void load() throws Exception
 	{
-		//TODO add load
+		 XStream xstream = new XStream(new DomDriver());
+	        ObjectInputStream is = xstream.createObjectInputStream
+						(new FileReader("gymapp.xml"));
+	        members = (ArrayList<Member>) is.readObject();
+	        trainers = (ArrayList<Trainer>) is.readObject();
+	        is.close();
 	}
 	
+	 /**
+	  * Saves Member and Trainer data.
+	  * 
+	  * @throws Exception
+	  */
 	public void store() throws Exception
 	{
-		//TODO add save
+		XStream xstream = new XStream(new DomDriver());
+        ObjectOutputStream out = xstream.createObjectOutputStream
+        			(new FileWriter("gymapp.xml"));
+        out.writeObject(members);
+        out.writeObject(trainers);
+        out.close();    
 	}
 	
 }

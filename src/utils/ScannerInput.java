@@ -70,7 +70,7 @@ public class ScannerInput
 	{
 		Scanner input = new Scanner(System.in);
 		do
-		{//TODO Parse String????
+		{
 			System.out.print(prompt);
 			return input.nextLine();
 		}

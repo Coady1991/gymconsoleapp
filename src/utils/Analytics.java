@@ -29,7 +29,7 @@ public class Analytics {
 	
 	public static double calculateBMI (Member member, Assessment assessment)
 	{
-        return toTwoDecimalPlaces(assessment.getWeight() / (member.getHeight() * member.getHeight()));
+        return toTwoDecimalPlaces(assessment.getWeight() / (Analytics.convertHeightMetresToInches(member.getHeight() * Analytics.convertHeightMetresToInches(member.getHeight()))));
 	}
 	
 	/**

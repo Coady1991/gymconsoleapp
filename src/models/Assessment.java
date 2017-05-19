@@ -1,5 +1,8 @@
 package models;
 
+import static utils.ScannerInput.*;
+
+
 /**
  * Represents an Assessment. Stores weight, chest, thigh,
  * upper arm, waist, hips, comment and the trainer
@@ -19,7 +22,7 @@ public class Assessment
     public double waist;
     public double hips;
     public String comment;
-    private Trainer trainer;
+    private Person trainer;
     
     /**
      * Constructor for objects of class Assessment. There is no validation on any fields.
@@ -42,7 +45,7 @@ public class Assessment
      */
     
     public Assessment (double weight, double chest, double thigh, double upperArm, double waist, double hips,
-    		           String comment, Trainer trainer)
+    		           String comment, Person trainer)
     {
     	this.weight = weight;
     	this.chest = chest;
@@ -133,7 +136,7 @@ public class Assessment
 	 * 
 	 * @return The Trainer who carried out the Assessment.
 	 */
-	public Trainer getTrainer() 
+	public Person getTrainer() 
 	{
 		return trainer;
 	}
@@ -233,6 +236,8 @@ public class Assessment
 		return "Assessment weight: " + weight + ", chest: " + chest + ", thigh: " + thigh + ", upperArm: " + upperArm
 				+ ", waist: " + waist + ", hips: " + hips + ", comment: " + comment + ", trainer: " + trainer;
 	}
+	
+	
 
     
 }

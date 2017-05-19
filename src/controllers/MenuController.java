@@ -5,6 +5,12 @@ import controllers.GymApi;
 import static utils.ScannerInput.*;
 import java.util.Scanner;
 
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  * This class runs the application and handles the Gym
@@ -645,23 +651,23 @@ public class MenuController
 				System.out.println("Current weight: " + member.latestAssessment().getWeight());
 			break;
 			case 2:
-				System.out.println("Starting Chest Measurement: " + member);
+				System.out.println("Starting Chest Measurement: ");
 				System.out.println("Current Chest Measurement: " + member.latestAssessment().getChest());
 			break;
 			case 3:
-				System.out.println("Starting Thigh Measurement: " + member);
+				System.out.println("Starting Thigh Measurement: ");
 				System.out.println("Current Thigh Measurement: " + member.latestAssessment().getThigh());
 			break;
 			case 4:
-				System.out.println("Starting Upper Arm Measurement: " + member);
+				System.out.println("Starting Upper Arm Measurement: ");
 				System.out.println("Current Upper Arm Measurement: " + member.latestAssessment().getUpperArm());
 			break;
 			case 5:
-				System.out.println("Starting Waist Measurement: " + member);
+				System.out.println("Starting Waist Measurement: ");
 				System.out.println("Current Waist Measurement: " + member.latestAssessment().getWaist());
 			break;
 			case 6:
-				System.out.println("Staring Hips Measurement: " + member);
+				System.out.println("Staring Hips Measurement: ");
 				System.out.println("Current Hips Measurement " + member.latestAssessment().getHips());
 			break;
 			default: 
@@ -673,7 +679,7 @@ public class MenuController
 			    System.out.println("\nPress any key to continue...");
 			    input.nextLine();
 			    //display the main menu again
-			    option = memberProfile(member);
+			    option = memberProgressMenu(member);
 		}
 		//The user chose option 0, so exit the program
 		System.out.println("Exiting to Member menu...");
@@ -720,7 +726,7 @@ public class MenuController
 				System.out.println(gymapi.searchMembersByName(nameEntered));
 			break;
 			case 5:
-				//gymapi.listMembersWithIdealWeight(); Needs latest assessment to work
+				//TODO gymapi.listMembersWithIdealWeight(); Needs latest assessment to work
 			break;
 			case 6:
 				System.out.println("Trainer these are the BMI cateogories: ");
@@ -777,10 +783,17 @@ public class MenuController
 			switch(option)
 			{
 			case 1:
-				
+				String emailEntered = validNextString("Please enter the email of the member you wish to search for? ");
+				Member member = gymapi.searchMembersByEmail(emailEntered);
+				gymapi.addAssessment(trainer, member);
+				System.out.println("New assessment added successfully.");
 			break;
 			case 2:
-				
+				String updateComment = validNextString("Please enter the email of the member you wish to search for? ");
+				Member memberComment = gymapi.searchMembersByEmail(updateComment);
+				String comment = validNextString("Enter a new comment for the assessment: ");
+				memberComment.latestAssessment().setComment(comment);
+				System.out.println("Comment updated successfully.");
 			break;
 			default:
 				System.out.println("Invalid option entered: " + option);
@@ -804,7 +817,7 @@ public class MenuController
 		System.out.println("+      Member Reports       +");
 		System.out.println("+---------------------------+");
 		System.out.println("  1) View member progress via email search");
-		System.out.println("  2) View ember progress via name search");
+		System.out.println("  2) View member progress via name search");
 		System.out.println("  3) Overall member' report");
 		System.out.println("  0) Exit");
 		int option = validNextInt("==>> ");
@@ -819,10 +832,25 @@ public class MenuController
 			switch(option)
 			{
 			case 1:
-				
+				String emailEntered = validNextString("Please enter the email of the member you wish to search for? ");
+				Member memberEmail = gymapi.searchMembersByEmail(emailEntered);
+				if(memberEmail != null)
+				{
+					runMemberProgressMenu(memberEmail);
+				}
+				else
+				{
+					System.out.println("Invalid E-mail entered: " + emailEntered);
+				}
 			break;
 			case 2:
-				
+				String nameEntered = validNextString("Please enter the name of the member you wish to search for? ");
+				String memberName = gymapi.searchMembersByName(nameEntered);
+				if(memberName != null)
+				{
+					
+					//TODO accept a members name string instead of a member class runMemberProgressMenu();
+				}
 			break;
 			case 3:
 				
