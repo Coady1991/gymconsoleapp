@@ -1,0 +1,45 @@
+<object-stream>
+  <list>
+    <models.StudentMember>
+      <email>niall@mail.com</email>
+      <name>Niall Coady</name>
+      <address>Tramore</address>
+      <gender>M</gender>
+      <height>1.81</height>
+      <startingWeight>85.5</startingWeight>
+      <chosenPackage>Student Membership</chosenPackage>
+      <member>
+        <entry>
+          <date>2017-05-21 21:48:13.199 UTC</date>
+          <models.Assessment>
+            <weight>75.0</weight>
+            <chest>32.0</chest>
+            <thigh>32.0</thigh>
+            <upperArm>12.0</upperArm>
+            <waist>34.0</waist>
+            <hips>38.0</hips>
+            <comment>Keep Going!</comment>
+            <trainer class="models.Trainer">
+              <email>train@mail.com</email>
+              <name>Ben Weights</name>
+              <address>Tramore</address>
+              <gender>M</gender>
+              <speciality>Strength</speciality>
+            </trainer>
+          </models.Assessment>
+        </entry>
+      </member>
+      <studentId>100001</studentId>
+      <collegeName>WIT</collegeName>
+    </models.StudentMember>
+  </list>
+  <list>
+    <models.Trainer>
+      <email>train@mail.com</email>
+      <name>Ben Weights</name>
+      <address>Tramore</address>
+      <gender>M</gender>
+      <speciality>Strength</speciality>
+    </models.Trainer>
+  </list>
+</object-stream>

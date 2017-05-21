@@ -34,10 +34,6 @@ public class GymApi
 	{
 		members = new ArrayList<>();
 		trainers = new ArrayList<>();
-		
-		members.add(new StudentMember("niall@mail.com", "Niall", "Tramore", "M", 1.80, 86, "Student", 100001, "WIT"));
-		members.add(new PremiumMember("john@mail.com", "John", "Waterford", "M", 1.75, 80, "Premium"));
-		trainers.add(new Trainer("train@mail.com", "Ben", "Kill", "M", "Conditioning"));
 	}
 	
 	/**
@@ -262,7 +258,7 @@ public class GymApi
 			for (Member member : members)
 			{
 				
-				if(member.getMember().size() > 0 && Analytics.isIdealBodyWeight(member, member.latestAssessment()))
+				if(Analytics.isIdealBodyWeight(member, member.latestAssessment()))
 				{
 					listOfMembersIdeal = listOfMembersIdeal + member.toString() + "\n"; 
 				}
@@ -299,7 +295,7 @@ public class GymApi
 		{
 			for(Member member: members)
 			{
-				if(Analytics.determineBMICategory(Analytics.calculateBMI(member, member.latestAssessment())).toUpperCase().contains(category.toUpperCase()))
+				if(member.getMember().size() > 0 && Analytics.determineBMICategory(Analytics.calculateBMI(member, member.latestAssessment())).toUpperCase().contains(category.toUpperCase()))
 				{
 					listOfMembers += member.toString() + "\n";
 				}
@@ -342,13 +338,20 @@ public class GymApi
 		return "There are no members in the gym";
 	}
 
+	/**
+	 * Allows a Trainer to add an assessment for a Member
+	 * 
+	 * @param trainer
+	 * 
+	 * @param member
+	 */
 	public void addAssessment(Person trainer, Member member)
 	{
 		double weight;
 		
 		while(true)
 		{
-			weight = validNextDouble("Enter you starting weight(Between 35 and 250kgs): ");
+			weight = validNextDouble("Enter weight(Between 35 and 250kgs): ");
 			
 			if((weight >= 35) && (weight <= 250))
 			{
@@ -380,11 +383,10 @@ public class GymApi
 	public void load() throws Exception
 	{
 		 XStream xstream = new XStream(new DomDriver());
-	        ObjectInputStream is = xstream.createObjectInputStream
-						(new FileReader("gymapp.xml"));
-	        members = (ArrayList<Member>) is.readObject();
-	        trainers = (ArrayList<Trainer>) is.readObject();
-	        is.close();
+	     ObjectInputStream is = xstream.createObjectInputStream(new FileReader("gymapp.xml"));
+	     members = (ArrayList<Member>) is.readObject();
+	     trainers = (ArrayList<Trainer>) is.readObject();
+	     is.close();
 	}
 	
 	 /**
@@ -392,11 +394,10 @@ public class GymApi
 	  * 
 	  * @throws Exception
 	  */
-	public void store() throws Exception
+	public void save() throws Exception
 	{
 		XStream xstream = new XStream(new DomDriver());
-        ObjectOutputStream out = xstream.createObjectOutputStream
-        			(new FileWriter("gymapp.xml"));
+        ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter("gymapp.xml"));
         out.writeObject(members);
         out.writeObject(trainers);
         out.close();    

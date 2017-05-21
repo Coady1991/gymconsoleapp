@@ -180,7 +180,7 @@ public abstract class Member extends Person
 	
 	public String toString() 
 	{
-		return super.toString() + "\nheight: " + height + ", weight: " + startingWeight + ", Chosen Package: " + chosenPackage;
+		return super.toString() + "\nHeight: " + height + ", Weight: " + startingWeight + ", Chosen Package: " + chosenPackage;
 	}
 	
 	/**

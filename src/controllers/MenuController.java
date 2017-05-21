@@ -37,14 +37,14 @@ public class MenuController
 	{
 		input = new Scanner(System.in);
 		gymapi = new GymApi();
-		//try //TODO is this in the right place to load from XML before menu runs?
-		//{
-		//	gymapi.load();
-		//}
-		//catch (Exception e)
-		//{
-		//	System.err.println("Error reading from file: " + e);		
-		//}
+		try 
+		{
+			gymapi.load();
+		}
+		catch (Exception e)
+		{
+			System.err.println("Error reading from file: " + e);		
+		}
 		runMenu();
 	}
 	
@@ -69,7 +69,6 @@ public class MenuController
 	/**
 	 * This method controls the loop for the login menu.
 	 * Exits the loop once user inputs 0.
-	 * 
 	 */
 	private void runMenu()
 	{
@@ -97,13 +96,20 @@ public class MenuController
 		}
 		//The user chose option 0, so exit the program
 		System.out.println("Exiting... Goodbye");
+		try 
+		{
+			gymapi.save();
+		}
+		catch (Exception e) 
+		{
+			System.err.println("Error writing to file: " + e);
+		}
 		System.exit(0);
 	}
 	
 	/**
 	 * This method controls the loop for the Member/Trainer login.
 	 * If invalid details are entered, the user is returned to the login menu.
-	 * 
 	 */
 	private void login()
 	{
@@ -145,6 +151,10 @@ public class MenuController
 		}
 	}
 	
+	/**
+	 * This method controls the loop for registering a member or a trainer.
+	 * Will keep looping until the user inputs the correct format.
+	 */
 	private void register()
 	{
 		String regType = "";
@@ -241,7 +251,7 @@ public class MenuController
 			
 			while(true)
 			{
-				mHeight = validNextDouble("\nEnter your height(Between 1 and 3 metres): ");
+				mHeight = validNextDouble("Enter your height(Between 1 and 3 metres): ");
 				
 				if((mHeight >= 1) && (mHeight <=3))
 				{
@@ -414,7 +424,7 @@ public class MenuController
 	}
 	
 	/**
-	 * memberMenu() - This method displays the member menu after a member
+	 * memberMenu - This method displays the member menu after a member
 	 * successfully logins in with a valid email.
 	 * 
 	 */
@@ -431,6 +441,10 @@ public class MenuController
 		return option;
 	}
 	
+	/**
+	 * This method controls the loop for the member menu.
+	 * Exits the loop once user inputs 0.
+	 */
 	private void runMemberMenu(String personClass, Member member)
 	{
 		int option = memberMenu();
@@ -444,7 +458,8 @@ public class MenuController
 			case 2: 
 				runMemberProfile(member);
 			break;
-			case 3: runMemberProgressMenu(member);
+			case 3: 
+				runMemberProgressMenu(member);
 			break;
 			default: 
 				System.out.println("Invalid option entered: " + option);
@@ -462,6 +477,12 @@ public class MenuController
 		runMenu();
 	}
 	
+	/**
+	 * memberProfile - This method displays the member profile menu,
+	 * read the menu option that the user entered and returns it.
+	 * 
+	 * @return The users menu choice.
+	 */
 	private int memberProfile(Member member)
 	{
 		System.out.println("+---------------------------+");
@@ -484,6 +505,10 @@ public class MenuController
 		return option;
 	}
 	
+	/**
+	 * This method controls the loop for the member profile menu.
+	 * Exits the loop once user inputs 0.
+	 */
 	private void runMemberProfile(Member member)
 	{
 		int option = memberProfile(member);
@@ -622,6 +647,12 @@ public class MenuController
 			
 	}
 	
+	/**
+	 * memberProgressMenu - This method displays the member progress menu,
+	 * read the menu option that the user entered and returns it.
+	 * 
+	 * @return The users menu choice.
+	 */
 	private int memberProgressMenu(Member member)
 	{
 		System.out.println("+---------------------------+");
@@ -639,6 +670,10 @@ public class MenuController
 		return option;
 	}
 	
+	/**
+	 * This method controls the loop for the member progress menu.
+	 * Exits the loop once user inputs 0.
+	 */
 	private void runMemberProgressMenu(Member member)
 	{
 		int option = memberProgressMenu(member);
@@ -654,8 +689,9 @@ public class MenuController
 				}
 				else
 				{
-					break;
+					System.out.println("You have not completed an assessment yet!");
 				}
+			break;
 			case 2:
 				System.out.println("Starting Chest Measurement: ");
 				if(member.sortedAssessmentDates().size() > 0)
@@ -664,8 +700,9 @@ public class MenuController
 				}
 				else
 				{
-					break;
+					System.out.println("You have not completed an assessment yet!");
 				}
+				break;
 			case 3:
 				System.out.println("Starting Thigh Measurement: ");
 				if(member.sortedAssessmentDates().size() > 0)
@@ -674,8 +711,9 @@ public class MenuController
 				}
 				else
 				{
-					break;
+					System.out.println("You have not completed an assessment yet!");
 				}
+				break;
 			case 4:
 				System.out.println("Starting Upper Arm Measurement: ");
 				if(member.sortedAssessmentDates().size() > 0)
@@ -684,8 +722,9 @@ public class MenuController
 				}
 				else
 				{
-					break;
+					System.out.println("You have not completed an assessment yet!");
 				}
+			break;
 			case 5:
 				System.out.println("Starting Waist Measurement: ");
 				if(member.sortedAssessmentDates().size() > 0)
@@ -694,8 +733,9 @@ public class MenuController
 				}
 				else
 				{
-					break;
+					System.out.println("You have not completed an assessment yet!");
 				}
+			break;
 			case 6:
 				System.out.println("Staring Hips Measurement: ");
 				if(member.sortedAssessmentDates().size() > 0)
@@ -704,14 +744,14 @@ public class MenuController
 				}
 				else
 				{
-					break;
+					System.out.println("You have not completed an assessment yet!");
 				}
+			break;
 			default: 
 				System.out.println("Invalid option entered: " + option);
 			break;
 			}
 			
-			System.out.println("You have not completed an assessment yet!");
 			//pause the program so that the user can read what was printed to
 			//the terminal window
 			System.out.println("\nPress any key to continue...");
@@ -724,6 +764,12 @@ public class MenuController
 		runMemberMenu(null, member);
 		}
 	
+	/**
+	 * trainerMenu - This method displays the trainer menu,
+	 * read the menu option that the user entered and returns it.
+	 * 
+	 * @return The users menu choice.
+	 */
 	private int trainerMenu()
 	{
 		System.out.println("+---------------------------+");
@@ -742,6 +788,10 @@ public class MenuController
 		return option;
 	}
 	
+	/**
+	 * This method controls the loop for the trainer menu.
+	 * Exits the loop once user inputs 0.
+	 */
 	private void runTrainerMenu(String personClass, Person trainer)
 	{
 		int option = trainerMenu();
@@ -764,6 +814,7 @@ public class MenuController
 				System.out.println(gymapi.searchMembersByName(nameEntered));
 			break;
 			case 5:
+				System.out.println("Currently under repairs");
 				//TODO gymapi.listMembersWithIdealWeight(); //Needs latest assessment to work
 			break;
 			case 6:
@@ -777,7 +828,9 @@ public class MenuController
 						           "\n Severely Obese" +
 				                   "\n Very Sverely Obese");
 				String category = validNextString("Please enter the BMI cateogry you wish to search?");
-				// TODO gymapi.listmembersByspecificBMICateogry(category); //needs latest assessment to work
+				
+				System.out.println("Currently under repairs");
+				gymapi.listmembersByspecificBMICateogry(category); //needs latest assessment to work
 			break;
 			case 7:
 				runAssessmentMenu(trainer);
@@ -801,6 +854,12 @@ public class MenuController
 		runMenu();
 		}
 	
+	/**
+	 * assessmentMenu - This method displays the trainer assessment menu,
+	 * read the menu option that the user entered and returns it.
+	 * 
+	 * @return The users menu choice.
+	 */
 	private int assessmentMenu(Person trainer)
 	{
 		System.out.println("+---------------------------+");
@@ -813,6 +872,10 @@ public class MenuController
 		return option;
 	}
 	
+	/**
+	 * This method controls the loop for the trainer assessment menu.
+	 * Exits the loop once user inputs 0.
+	 */
 	private void runAssessmentMenu(Person trainer)
 	{
 		int option = assessmentMenu(trainer);
@@ -849,6 +912,12 @@ public class MenuController
 		runTrainerMenu(null, trainer);
 	}
 	
+	/**
+	 * reportsMenu - This method displays the trainer reports menu,
+	 * read the menu option that the user entered and returns it.
+	 * 
+	 * @return The users menu choice.
+	 */
 	private int reportsMenu(Person trainer)
 	{
 		System.out.println("+---------------------------+");
@@ -862,6 +931,10 @@ public class MenuController
 		return option;
 	}
 	
+	/**
+	 * This method controls the loop for the trainer reports menu.
+	 * Exits the loop once user inputs 0.
+	 */
 	private void runReportsMenu(Person trainer)
 	{
 		int option = reportsMenu(trainer);
@@ -886,13 +959,13 @@ public class MenuController
 				String memberName = gymapi.searchMembersByName(nameEntered);
 				if(memberName != null)
 				{
-					
+					System.out.println("Currently under repairs");
 					//TODO accept a members name string instead of a member class runMemberProgressMenu();
 					//need to match name to email??
 				}
 			break;
 			case 3:
-				
+				System.out.println("Currently under repairs");
 			break;
 			default:
 				System.out.println("Invalid option entered: " + option);
