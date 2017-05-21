@@ -682,10 +682,10 @@ public class MenuController
 			switch (option)
 			{
 			case 1:
-				System.out.println("Starting weight: " + member.getStartingWeight() + " kgs");
 				if(member.sortedAssessmentDates().size() > 0)
 				{
-				System.out.println("Current weight: " + member.latestAssessment().getWeight());
+					System.out.println("Starting weight: " + member.getStartingWeight() + " kgs");
+				    System.out.println("Current weight: " + member.latestAssessment().getWeight() + " kgs");
 				}
 				else
 				{
@@ -693,10 +693,10 @@ public class MenuController
 				}
 			break;
 			case 2:
-				System.out.println("Starting Chest Measurement: ");
 				if(member.sortedAssessmentDates().size() > 0)
 				{
-				System.out.println("Current Chest Measurement: " + member.latestAssessment().getChest());
+					System.out.println("Starting Chest Measurement: " + member.firstAssessment().getChest() + " cm");
+				    System.out.println("Current Chest Measurement: " + member.latestAssessment().getChest() + " cm");
 				}
 				else
 				{
@@ -704,10 +704,10 @@ public class MenuController
 				}
 				break;
 			case 3:
-				System.out.println("Starting Thigh Measurement: ");
 				if(member.sortedAssessmentDates().size() > 0)
 				{
-				System.out.println("Current Thigh Measurement: " + member.latestAssessment().getThigh());
+					System.out.println("Starting Thigh Measurement: " + member.firstAssessment().getThigh() + " cm");
+				    System.out.println("Current Thigh Measurement: " + member.latestAssessment().getThigh() + " cm");
 				}
 				else
 				{
@@ -715,10 +715,10 @@ public class MenuController
 				}
 				break;
 			case 4:
-				System.out.println("Starting Upper Arm Measurement: ");
 				if(member.sortedAssessmentDates().size() > 0)
 				{
-				System.out.println("Current Upper Arm Measurement: " + member.latestAssessment().getUpperArm());
+					System.out.println("Starting Upper Arm Measurement: " + member.firstAssessment().getUpperArm() + " cm");
+					System.out.println("Current Upper Arm Measurement: " + member.latestAssessment().getUpperArm() + " cm");
 				}
 				else
 				{
@@ -726,10 +726,11 @@ public class MenuController
 				}
 			break;
 			case 5:
-				System.out.println("Starting Waist Measurement: ");
+				
 				if(member.sortedAssessmentDates().size() > 0)
 				{
-				System.out.println("Current Waist Measurement: " + member.latestAssessment().getWaist());
+					System.out.println("Starting Waist Measurement: "+ member.firstAssessment().getWaist() + " cm");
+				    System.out.println("Current Waist Measurement: " + member.latestAssessment().getWaist() + " cm");
 				}
 				else
 				{
@@ -737,10 +738,10 @@ public class MenuController
 				}
 			break;
 			case 6:
-				System.out.println("Staring Hips Measurement: ");
 				if(member.sortedAssessmentDates().size() > 0)
 				{
-				System.out.println("Current Hips Measurement " + member.latestAssessment().getHips());
+					System.out.println("Staring Hips Measurement: "+ member.firstAssessment().getHips() + " cm");
+				    System.out.println("Current Hips Measurement " + member.latestAssessment().getHips() + " cm");
 				}
 				else
 				{

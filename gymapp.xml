@@ -18,7 +18,26 @@
             <upperArm>12.0</upperArm>
             <waist>34.0</waist>
             <hips>38.0</hips>
-            <comment>Keep Going!</comment>
+            <comment>cool</comment>
+            <trainer class="models.Trainer">
+              <email>train@mail.com</email>
+              <name>Ben Weights</name>
+              <address>Tramore</address>
+              <gender>M</gender>
+              <speciality>Strength</speciality>
+            </trainer>
+          </models.Assessment>
+        </entry>
+        <entry>
+          <date>2017-05-21 22:55:59.242 UTC</date>
+          <models.Assessment>
+            <weight>74.0</weight>
+            <chest>22.0</chest>
+            <thigh>32.0</thigh>
+            <upperArm>12.0</upperArm>
+            <waist>34.0</waist>
+            <hips>36.0</hips>
+            <comment>cool</comment>
             <trainer class="models.Trainer">
               <email>train@mail.com</email>
               <name>Ben Weights</name>

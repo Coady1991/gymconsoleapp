@@ -193,6 +193,11 @@ public abstract class Member extends Person
 		return member.get(sortedAssessmentDates().last());
 	}
 	
+	public Assessment firstAssessment()
+	{
+		return member.get(sortedAssessmentDates().first());
+	}
+	
 	/**
 	 * Returns the assessments date sorted in date order.
 	 * 
