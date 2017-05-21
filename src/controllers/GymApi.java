@@ -261,9 +261,10 @@ public class GymApi
 		{
 			for (Member member : members)
 			{
-				if(Analytics.isIdealBodyWeight(member, member.latestAssessment()))
+				
+				if(member.getMember().size() > 0 && Analytics.isIdealBodyWeight(member, member.latestAssessment()))
 				{
-					listOfMembersIdeal += " " + member.toString() + "\n"; 
+					listOfMembersIdeal = listOfMembersIdeal + member.toString() + "\n"; 
 				}
 				else if(listOfMembersIdeal.equals(""))
 				{
@@ -271,7 +272,7 @@ public class GymApi
 				}
 				else
 				{
-					return listOfMembersIdeal;
+					return "listOfMembersIdeal";
 				}
 			}
 		}

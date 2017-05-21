@@ -37,14 +37,14 @@ public class MenuController
 	{
 		input = new Scanner(System.in);
 		gymapi = new GymApi();
-		try //TODO is this in the right place to load from XML before menu runs?
-		{
-			gymapi.load();
-		}
-		catch (Exception e)
-		{
-			System.err.println("Error reading from file: " + e);		
-		}
+		//try //TODO is this in the right place to load from XML before menu runs?
+		//{
+		//	gymapi.load();
+		//}
+		//catch (Exception e)
+		//{
+		//	System.err.println("Error reading from file: " + e);		
+		//}
 		runMenu();
 	}
 	
@@ -654,9 +654,8 @@ public class MenuController
 				}
 				else
 				{
-					System.out.println("You have not completed an assessment yet!");
+					break;
 				}
-			break;
 			case 2:
 				System.out.println("Starting Chest Measurement: ");
 				if(member.sortedAssessmentDates().size() > 0)
@@ -665,9 +664,8 @@ public class MenuController
 				}
 				else
 				{
-					System.out.println("You have not completed an assessment yet!");
+					break;
 				}
-			break;
 			case 3:
 				System.out.println("Starting Thigh Measurement: ");
 				if(member.sortedAssessmentDates().size() > 0)
@@ -676,9 +674,8 @@ public class MenuController
 				}
 				else
 				{
-					System.out.println("You have not completed an assessment yet!");
+					break;
 				}
-			break;
 			case 4:
 				System.out.println("Starting Upper Arm Measurement: ");
 				if(member.sortedAssessmentDates().size() > 0)
@@ -687,9 +684,8 @@ public class MenuController
 				}
 				else
 				{
-					System.out.println("You have not completed an assessment yet!");
+					break;
 				}
-			break;
 			case 5:
 				System.out.println("Starting Waist Measurement: ");
 				if(member.sortedAssessmentDates().size() > 0)
@@ -698,9 +694,8 @@ public class MenuController
 				}
 				else
 				{
-					System.out.println("You have not completed an assessment yet!");
+					break;
 				}
-			break;
 			case 6:
 				System.out.println("Staring Hips Measurement: ");
 				if(member.sortedAssessmentDates().size() > 0)
@@ -709,19 +704,20 @@ public class MenuController
 				}
 				else
 				{
-					System.out.println("You have not completed an assessment yet!");
+					break;
 				}
-			break;
 			default: 
 				System.out.println("Invalid option entered: " + option);
 			break;
 			}
-			    //pause the program so that the user can read what was printed to
-			    //the terminal window
-			    System.out.println("\nPress any key to continue...");
-			    input.nextLine();
-			    //display the main menu again
-			    option = memberProgressMenu(member);
+			
+			System.out.println("You have not completed an assessment yet!");
+			//pause the program so that the user can read what was printed to
+			//the terminal window
+			System.out.println("\nPress any key to continue...");
+			input.nextLine();
+			//display the main menu again
+		    option = memberProgressMenu(member);
 		}
 		//The user chose option 0, so exit the program
 		System.out.println("Exiting to Member menu...");
@@ -768,7 +764,7 @@ public class MenuController
 				System.out.println(gymapi.searchMembersByName(nameEntered));
 			break;
 			case 5:
-				//TODO gymapi.listMembersWithIdealWeight(); Needs latest assessment to work
+				//TODO gymapi.listMembersWithIdealWeight(); //Needs latest assessment to work
 			break;
 			case 6:
 				System.out.println("Trainer these are the BMI cateogories: ");
@@ -781,7 +777,7 @@ public class MenuController
 						           "\n Severely Obese" +
 				                   "\n Very Sverely Obese");
 				String category = validNextString("Please enter the BMI cateogry you wish to search?");
-				gymapi.listmembersByspecificBMICateogry(category);
+				// TODO gymapi.listmembersByspecificBMICateogry(category); //needs latest assessment to work
 			break;
 			case 7:
 				runAssessmentMenu(trainer);
