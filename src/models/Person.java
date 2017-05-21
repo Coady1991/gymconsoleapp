@@ -42,7 +42,6 @@ public class Person
 	    {
 	        this.name = name.substring(0, 30);
 	    }
-		this.name = name;
 		this.address = address;
 		if ((gender.toUpperCase().equals("M")) || ((gender.toUpperCase().equals("F"))))
         {
@@ -172,7 +171,7 @@ public class Person
 	@Override
 	public String toString() 
 	{
-		return "email: " + email + ", name: " + name + ", address: " + address + ", gender: " + gender;
+		return "Email: " + email + ", Name: " + name + ", Address: " + address + ", Gender: " + gender;
 	}
 	
 	

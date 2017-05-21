@@ -6,7 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AssessmentTest {
+public class AssessmentTest 
+{
 	
 	private Assessment assessment1, assessment2, assessment3;
 	private Trainer trainer1, trainer2, trainer3;

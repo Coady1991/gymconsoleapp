@@ -1,8 +1,5 @@
 package models;
 
-import static utils.ScannerInput.*;
-
-
 /**
  * Represents an Assessment. Stores weight, chest, thigh,
  * upper arm, waist, hips, comment and the trainer
@@ -230,11 +227,11 @@ public class Assessment
 	 *
 	 * @return A string version of the Assessment object.
 	 */
-	@Override
+	
 	public String toString() 
 	{
-		return "Assessment weight: " + weight + ", chest: " + chest + ", thigh: " + thigh + ", upperArm: " + upperArm
-				+ ", waist: " + waist + ", hips: " + hips + ", comment: " + comment + ", trainer: " + trainer;
+		return "Assessment Weight: " + weight + ", Chest: " + chest + ", Thigh: " + thigh + ", Upper Arm: " + upperArm
+				+ ", Waist: " + waist + ", Hips: " + hips + ", Comment: " + comment + ", Trainer: " + trainer;
 	}
 	
 	

@@ -46,7 +46,7 @@ public class PremiumMember extends Member
 	
 	public void chosenPackage(String packageChoice)
 	{
-		
+		setChosenPackage(packageChoice);
 	}
 	
 }

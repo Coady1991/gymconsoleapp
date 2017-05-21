@@ -123,7 +123,7 @@ public class StudentMember extends Member
 	
 	public void chosenPackage(String packageChoice)
 	{
-		
+		setChosenPackage(packageChoice);
 	}
 	
 }
